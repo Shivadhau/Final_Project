@@ -20,15 +20,15 @@ def download_and_extract_data():
         url = f"https://drive.google.com/uc?id={file_id}"
         output = "Rice_Image_Dataset.zip"
 
-        # Download the ZIP file
-        gdown.download(url, output, quiet=False)
+        # Try downloading the zip with fuzzy=True to bypass Google Drive warnings
+        gdown.download(url, output, quiet=False, fuzzy=True)
 
-        # Extract the contents
+        # Extract it
         with zipfile.ZipFile(output, 'r') as zip_ref:
             zip_ref.extractall()
 
-        # Optional: Remove the zip file after extraction
         os.remove(output)
+
 
 download_and_extract_data()
 
