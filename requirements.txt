@@ -1,7 +1,9 @@
 streamlit
+opencv-python-headless
+scikit-learn
+xgboost
 numpy
 pandas
-scikit-learn
-opencv-python-headless
 Pillow
-xgboost
+gdown
+
