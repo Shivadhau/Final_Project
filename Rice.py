@@ -8,6 +8,30 @@ from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+import gdown
+import zipfile
+import os
+import streamlit as st
+
+@st.cache_resource
+def download_and_extract_data():
+    if not os.path.exists("Rice_Image_Dataset"):
+        file_id = "1FxW2XuLAO9khbaU0RBB_UN1g7WvTIDv1"
+        url = f"https://drive.google.com/uc?id={file_id}"
+        output = "Rice_Image_Dataset.zip"
+
+        # Download the ZIP file
+        gdown.download(url, output, quiet=False)
+
+        # Extract the contents
+        with zipfile.ZipFile(output, 'r') as zip_ref:
+            zip_ref.extractall()
+
+        # Optional: Remove the zip file after extraction
+        os.remove(output)
+
+download_and_extract_data()
+
 # Configuration
 IMAGE_SIZE = 32
 PCA_COMPONENTS = 15
